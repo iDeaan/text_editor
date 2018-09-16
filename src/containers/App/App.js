@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { markdown } from 'markdown';
+import returnCustomMarkdown from '../../helpers/returnCustomMarkdown';
 import './App.scss';
 
 class App extends Component {
@@ -20,6 +21,9 @@ class App extends Component {
       case 'markdown':
         inputTransformed = markdown.toHTML(inputValue);
         break;
+      case 'custom-markdown':
+        inputTransformed = returnCustomMarkdown(inputValue);
+        break;
       default:
         inputTransformed = markdown.toHTML(inputValue);
     }
@@ -30,12 +34,23 @@ class App extends Component {
     this.setState({ inputValue: event.target.value });
   }
 
+  handleMarkdownChange(event) {
+    this.setState({ selectedMarkdown: event.target.value })
+  }
+
   render() {
-    const { inputValue } = this.state;
+    const { inputValue, selectedMarkdown } = this.state;
     const transformedInput = this.returnTransformedInput(inputValue);
 
     return (
       <div className="app-container">
+        <div className="select-markdown">
+          Select markdown:
+          <select id="lang" onChange={(event) => this.handleMarkdownChange(event)} value={selectedMarkdown}>
+            <option value="markdown">Default Markdown</option>
+            <option value="custom-markdown">Custom Markdown</option>
+          </select>
+        </div>
         <div className="markdown-container">
           <div className="transform-container">
             <div className="title">Input text</div>
