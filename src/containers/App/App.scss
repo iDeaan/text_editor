@@ -1,0 +1,33 @@
+.app-container {
+  .markdown-container {
+    display: flex;
+    justify-content: space-between;
+    height: 90vh;
+
+    .transform-container {
+      width: 33%;
+      height: 100%;
+      border: solid 1px;
+
+      .title {
+        background-color: #e2e2e2;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        border-bottom: solid 1px;
+        text-transform: uppercase;
+      }
+
+      .text-container {
+        height: calc(90vh - 40px);
+
+        textarea {
+          height: 100%;
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+}
